@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+{% block content%}
+<style>
+   .header{
+    width: 100%;
+    height: 360px;
+    object-fit:cover;
+    margin-top: 20px;
+   }
+   .txtaln{
+    text-align: justify;
+   }
+   .setbox{
+    box-sizing: border-box;
+   }
+   body {font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+   }
+   
+</style>
+
+
+<img id="myImage" src="{{ url_for('static', filename=images[0]) }}" alt="Image" class="header">
+    <script>
+      // Define an array of image filenames
+      var images = {{images|tojson}} ;
+
+      // Define a counter variable to keep track of the current image
+      var counter = 0;
+
+        // Define a variable to hold the interval ID
+      var intervalId;
+
+        // Define a function to change the image
+        function changeImage() {
+        document.getElementById("myImage").src = "{{ url_for('static', filename='') }}" + images[counter];
+        counter++;
+        if (counter >= images.length) {
+            counter = 0;
+        }
+        }
+
+        // Call the changeImage function every second and save the interval ID
+        intervalId = setInterval(changeImage, 5000);
+
+        // Add event listeners to stop and start the interval when the mouse hovers over and leaves the image
+        document.getElementById("myImage").addEventListener("mouseenter", function() {
+        clearInterval(intervalId);
+        });
+
+        document.getElementById("myImage").addEventListener("mouseleave", function() {
+        intervalId = setInterval(changeImage, 5000);
+        });
+    </script>
+
+<p class="txtaln lead">
+
+</p>
+<h1 class="text-left">Welcome to my RSpace</h1>
+
+<p class="txtaln lead">Jian Zhang is a talented postdoctoral researcher
+    at University Laval with a strong interest in the field of polymer
+    rheology, mechanical fatigue of biobased/recycled polymers, and 
+    fluid dynamics in porous media. Throughout his academic and 
+    professional career, Jian has demonstrated a passion for 
+    understanding the fundamental behavior of complex materials and 
+    has made significant contributions to the field through his 
+    research. He has extensive experience in characterizing the 
+    mechanical and rheological properties of polymers, as well as 
+    investigating the effects of mechanical fatigue on these materials.
+    Additionally, Jian has a keen interest in the fluid dynamics of 
+    porous media and has conducted research on the behavior of fluids 
+    in these complex environments. With a commitment to excellence in 
+    research and a dedication to advancing the field of polymer science,
+     Jian is a valuable asset to any team or project.
+</p>
+
+<p class="txtaln lead">
+    In addition to his impressive research background, Jian Zhang has 
+    also achieved notable academic accomplishments, including eight 
+    publications in peer-reviewed journals that showcase his ability 
+    to communicate complex research findings to a broad audience. 
+    His contributions to the field have been recognized with several 
+    prestigious awards, including the Mitacs award, which highlights 
+    his exceptional research skills and expertise. Jian has also 
+    received a PhD scholarship, which demonstrates his commitment 
+    to academic excellence and his potential to make significant 
+    contributions to the field of polymer science. Furthermore, 
+    Jian has participated in a summer school program at Ghent 
+    University, where he expanded his knowledge and expertise in 
+    the field of polymer science, and developed a global perspective 
+    on the latest research advancements. With such an outstanding track
+    record of academic achievement, Jian is well-equipped to continue
+    making significant contributions to the field of polymer rheology
+    and beyond.
+</p>
+<div style="display:inline-block;width:200px;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5j824ziw20q&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;crb1=000000&amp;crh1=ffffff&amp;sx=0" async="async"></script></div>
+
+
+{% endblock %}
